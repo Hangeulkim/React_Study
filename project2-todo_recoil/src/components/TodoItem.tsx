@@ -2,7 +2,8 @@ import React from 'react';
 import '../css/TodoItem.scss';
 import {MdDone, MdDelete} from 'react-icons/md';
 import classNames from 'classnames';
-import { useTodoDispatch } from './TodoContext';
+import { todoListState} from './TodoContext';
+import { useRecoilState } from 'recoil';
 
 type Item = {
     id: number;
@@ -10,12 +11,24 @@ type Item = {
     text: string;
 };
 
-
-
 const TodoItem: React.FC<Item> = ({id, done, text}) => {
-    const dispatch = useTodoDispatch();
-    const onToggle = () => dispatch({type: 'TOGGLE', id, done});
-    const onRemove = () => dispatch({type: 'REMOVE', id});
+    const [todoList, setTodoList] = useRecoilState(todoListState);
+    console.log(todoList);
+
+    const onToggle = () => {
+        const newList = todoList.map(todo =>
+            todo.id === id ? {...todo, done: !todo.done} : todo
+        );
+
+        setTodoList(newList);
+    };
+
+    const onRemove = () => {
+        const newList = todoList.filter(todo => todo.id !== id);
+
+        setTodoList(newList);
+    };
+
     return (
         <div className='TodoItemBlock'>
             <div className={classNames('CheckCircle', {done})} onClick={onToggle}>

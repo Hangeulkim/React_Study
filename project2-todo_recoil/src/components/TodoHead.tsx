@@ -1,9 +1,10 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 import '../css/TodoHead.scss';
-import {useTodoState} from './TodoContext';
+import {todoListState} from './TodoContext';
 
 const TodoHead: React.FC = () => {
-    const todos = useTodoState();
+    const todos = useRecoilValue(todoListState);
     const undoneTasks = todos.filter(todo => !todo.done);
     console.log(todos);
 

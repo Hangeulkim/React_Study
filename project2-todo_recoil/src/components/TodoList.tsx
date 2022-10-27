@@ -1,10 +1,11 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 import '../css/TodoList.scss'
-import { useTodoState } from './TodoContext';
 import TodoItem from './TodoItem';
+import { filteredTodoListState } from './TodoListFilters';
 
 const TodoList: React.FC = () => {
-    const todos = useTodoState();
+    const todos = useRecoilValue(filteredTodoListState);
     
     return (
         <div className='TodoListBlock'>

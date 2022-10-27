@@ -35,12 +35,18 @@ const initialTodos = [
         id:4,
         text: '기능 구현하기',
         done: false
+    },
+    {
+        id:5,
+        text: '1번 과제 끝내기',
+        done: false
     }
 ];
 
 function todoReducer(state: State, action: Action): State{
     switch(action.type){
         case 'CREATE':
+            console.log(action.todo);
             return state.concat(action.todo);
         case 'TOGGLE':
             return state.map(todo =>

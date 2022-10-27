@@ -2,29 +2,30 @@ import React, {useState} from 'react';
 import '../css/TodoCreate.scss';
 import {MdAdd} from 'react-icons/md';
 import classNames from 'classnames';
-import { useTodoDispatch, useTodoState } from './TodoContext';
+import { todoListState} from './TodoContext';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 const TodoCreate: React.FC = () =>{
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState('');
 
-    const dispatch = useTodoDispatch();
-    const todos = useTodoState();
+    const todos = useRecoilValue(todoListState);
     const nextId = Math.max(...todos.map(todo => todo.id)) + 1;
+    const setTodoList = useSetRecoilState(todoListState);
 
     const onToggle = () => setOpen(!open);
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log(nextId);
-        dispatch({
-            type: 'CREATE',
-            todo: {
+        setTodoList((oldTodoList) => [
+            ...oldTodoList,
+            {
                 id: nextId,
                 text: value,
                 done: false
-            }
-        });
+            },
+        ]);
         setValue('');
         setOpen(false);
     };
