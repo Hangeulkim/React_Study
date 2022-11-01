@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { contentSelector, overLength, tabKeyAtom } from "../../recoil/states";
 
 const MsgInput = styled(TextField)({
-  width: "calc(100% - 24px)",
+  width: "100%",
   flexGrow: 1,
   minHeight: "260px",
 
@@ -14,10 +14,6 @@ const MsgInput = styled(TextField)({
   marginBottom: "8px",
   opacity: 1,
 
-  paddingLeft: "12px",
-  paddingRight: "12px",
-  paddingTop: "8px",
-
   color: "black",
   resize: "none",
 
@@ -27,6 +23,7 @@ const MsgInput = styled(TextField)({
   '&::placeholder': {
     opacity: 0.5,
   },
+  
 
   cursor: "auto",
 
@@ -39,20 +36,6 @@ export default function MessageInput() {
   return (
     <MsgInput placeholder="예약안내, 병원 위치 전송, 광고 진행 등 다양한 상황에 고객들에게 문자를 전송해보세요!"
       onChange={(event) => setContent(event.target.value)}
-      sx = {{
-        '&.Mui-focused': {
-          ...(!overlength && {
-            boxShadow: '0px 0px 6px #99CCFF',
-          }),
-          ...(overlength && {
-            boxShadow: '0px 0px 6px #ED3131',
-            opacity: 0.5,
-          }),
-          border: 0,
-          outline: 0,
-        },
-        font: "normal normal normal 12px/17px Noto Sans KR",
-      }}
       multiline
       variant="standard"
       InputProps = {{
@@ -62,7 +45,18 @@ export default function MessageInput() {
         },
         sx:{
           height:'100%',
-          
+          padding: "12px",
+          '&.Mui-focused': {
+            ...(!overlength && {
+              boxShadow: '0px 0px 12px #99CCFF',
+            }),
+            ...(overlength && {
+              boxShadow: '0px 0px 12px #ED3131',
+              opacity: 0.5,
+            }),
+            border: 0,
+            outline: 0,
+          },
         }
       }}
       /* eslint-disable-next-line react/jsx-no-duplicate-props */
@@ -85,6 +79,7 @@ export default function MessageInput() {
             height: 0,
             width: 0,
           },
+          font: "normal normal normal 12px/17px Noto Sans KR",
         }
       }}
       value = {content}/>

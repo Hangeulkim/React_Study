@@ -22,7 +22,9 @@ const Tabt = styled(Tab)({
   boxShadow: "0px 0px 3px #99CCFF80",
 
   '&:hover':{
-    boxShadow: '0px 0px 16px #99CCFF80, 0px 0px 16px #99CCFF80',
+    boxShadow: '0px 0px 16px #99CCFF80',
+    backgroundColor: '#99CCFF',
+    color: 'white',
   },
 });
 

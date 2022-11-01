@@ -10,10 +10,9 @@ export default function useMessageBuilder() {
         .getValue();
 
       set(loadingAtom, true);
-      console.log(requestData);
 
       (async() => {try{
-        const response = await postMessage(requestData, 'failure');
+        const response = await postMessage(requestData);
         set(responseAtom, response);
         set(dialogOpenStateAtom, 'success');
       } catch(e){

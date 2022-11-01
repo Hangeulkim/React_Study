@@ -3,12 +3,11 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { tabKeyAtom, titleSelector } from "../../recoil/states";
 
 const Title = styled(TextField)({
-  width: "calc(100% - 12px)",
+  width: "100%",
   background: "#FFFFFF 0% 0% no-repeat padding-box",
   boxShadow: "0px 0px 6px #00000036",
   opacity: 1,
 
-  padding: "4px 0 4px 12px",
   marginRight: "12px",
 
   verticalAlign: "middle",
@@ -41,7 +40,13 @@ export default function TitleInput() {
         disableUnderline: true,
         style: {
           font: "normal normal normal 12px/17px Noto Sans KR"
-        }
+        },
+        sx: {
+          '&.Mui-focused': {
+            boxShadow: '0px 0px 12px #99CCFF',
+        },
+        padding: "4px 0 4px 12px",
+      }
       }}
       value={title}/>
   );

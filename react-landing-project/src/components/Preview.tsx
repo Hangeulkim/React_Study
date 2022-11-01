@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { contentSelector, tabKeyAtom, titleSelector } from "../recoil/states";
 
@@ -65,15 +65,14 @@ const ScrollBox = styled('div')({
   },
 });
 
-const ShowCont = styled('div')({
+const ShowCont = styled(Typography)({
   height: "auto",
 
   minWidth: "260px",
+  minHeight: "32px",
 
-  paddingTop: "16px",
-  paddingLeft: "16px",
-  paddingRight: "16px",
-  paddingBottom: "12px",
+  padding: "4px",
+  paddingBottom: "8px",
 
   whiteSpace: "pre-line",
 
@@ -90,6 +89,7 @@ const ShowCont = styled('div')({
 
   '&::-webkit-scrollbar-thumb': {
     backgroundColor: '#B3B3B3',
+    borderRadius: "2px",
     outline: '2px',
   },
 
