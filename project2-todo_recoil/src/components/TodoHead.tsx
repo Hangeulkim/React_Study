@@ -10,7 +10,7 @@ const TodoHead: React.FC = () => {
 
 
     const today = new Date();
-    const dateString = today.toLocaleDateString('kr-KR', {
+    const dateString = today.toLocaleDateString('ko-KR', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
